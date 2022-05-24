@@ -27,7 +27,21 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
 
-            
+            builder.RegisterType<CatManager>().As<ICatService>().SingleInstance();
+            builder.RegisterType<EfCatDal>().As<ICatDal>().SingleInstance();
+
+            builder.RegisterType<FoodManager>().As<IFoodService>().SingleInstance();
+            builder.RegisterType<EfFoodDal>().As<IFoodDal>().SingleInstance();
+
+            builder.RegisterType<HealthManager>().As<IHealthService>().SingleInstance();
+            builder.RegisterType<EfHealthDal>().As<IHealthDal>().SingleInstance();
+
+            builder.RegisterType<MaltVitManager>().As<IMaltVitService>().SingleInstance();
+            builder.RegisterType<EfMaltVitDal>().As<IMaltVitDal>().SingleInstance();
+
+            builder.RegisterType<VaccineManager>().As<IVaccineService>().SingleInstance();
+            builder.RegisterType<EfVaccineDal>().As<IVaccineDal>().SingleInstance();
+
             builder.RegisterType<EmailManager>().As<IEmailService>().SingleInstance();
 
             builder.RegisterType<FileHelper>().As<IFileHelper>().SingleInstance();
