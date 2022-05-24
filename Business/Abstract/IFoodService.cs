@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Result;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace Business.Abstract
         IResult Add(Food food);
         IResult Update(Food food);
         IResult Delete(Food food);
+        IDataResult<List<CatFoodDetails>> GetCatFoodDetails(int catId);
     }
 }

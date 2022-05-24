@@ -15,5 +15,6 @@ namespace Business.Abstract
         IResult Add(Cat cat);
         IResult Update(Cat cat);
         IResult Delete(Cat cat);
+        
     }
 }

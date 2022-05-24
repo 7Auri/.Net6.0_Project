@@ -17,7 +17,7 @@ namespace Entities.Concrete
         public Leukemia? Leukemia { get; set; }
         public int FvrcpId { get; set; }
         public Fvrcp? Fvrcp { get; set; }
-
+        public Cat? Cat { get; set; }
 
 
     }

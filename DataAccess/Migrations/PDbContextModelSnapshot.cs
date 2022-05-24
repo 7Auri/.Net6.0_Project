@@ -222,6 +222,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("CatId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("DryFoodId")
                         .HasColumnType("int");
 
@@ -229,6 +232,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatId");
 
                     b.HasIndex("DryFoodId");
 
@@ -245,6 +250,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("CatId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Disease")
                         .HasColumnType("nvarchar(max)");
 
@@ -252,6 +260,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatId");
 
                     b.ToTable("Healths");
                 });
@@ -263,6 +273,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CatId")
+                        .HasColumnType("int");
 
                     b.Property<bool?>("Malt")
                         .HasColumnType("bit");
@@ -278,6 +291,8 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CatId");
+
                     b.ToTable("MaltVits");
                 });
 
@@ -289,6 +304,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("CatId")
+                        .HasColumnType("int");
+
                     b.Property<int>("FvrcpId")
                         .HasColumnType("int");
 
@@ -299,6 +317,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatId");
 
                     b.HasIndex("FvrcpId");
 
@@ -330,6 +350,10 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Food", b =>
                 {
+                    b.HasOne("Entities.Concrete.Cat", "Cat")
+                        .WithMany()
+                        .HasForeignKey("CatId");
+
                     b.HasOne("Entities.Concrete.DryFood", "DryFood")
                         .WithMany()
                         .HasForeignKey("DryFoodId");
@@ -338,13 +362,37 @@ namespace DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("WetFoodId");
 
+                    b.Navigation("Cat");
+
                     b.Navigation("DryFood");
 
                     b.Navigation("WetFood");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Health", b =>
+                {
+                    b.HasOne("Entities.Concrete.Cat", "Cat")
+                        .WithMany()
+                        .HasForeignKey("CatId");
+
+                    b.Navigation("Cat");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.MaltVit", b =>
+                {
+                    b.HasOne("Entities.Concrete.Cat", "Cat")
+                        .WithMany()
+                        .HasForeignKey("CatId");
+
+                    b.Navigation("Cat");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Vaccine", b =>
                 {
+                    b.HasOne("Entities.Concrete.Cat", "Cat")
+                        .WithMany()
+                        .HasForeignKey("CatId");
+
                     b.HasOne("Entities.Concrete.DTOs.Fvrcp", "Fvrcp")
                         .WithMany()
                         .HasForeignKey("FvrcpId")
@@ -362,6 +410,8 @@ namespace DataAccess.Migrations
                         .HasForeignKey("RabiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Cat");
 
                     b.Navigation("Fvrcp");
 

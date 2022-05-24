@@ -14,5 +14,6 @@ namespace Entities.Concrete
         public DateTime? MaltTime { get; set; }
         public bool? Vitamin { get; set; }
         public DateTime? VitTime { get; set; }
+        public Cat? Cat { get; set; }
     } 
 }

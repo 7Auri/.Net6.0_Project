@@ -11,6 +11,7 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public WetFood? WetFood{ get; set; }
-        public DryFood? DryFood{ get; set; } 
+        public DryFood? DryFood{ get; set; }
+        public Cat? Cat { get; set; }
     }
 }

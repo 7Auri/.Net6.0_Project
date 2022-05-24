@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.SuccessAdd);
         }
 
+
         public IResult Delete(Food food)
         {
            _foodDal.Delete(food);
@@ -39,6 +41,11 @@ namespace Business.Concrete
         public IDataResult<Food> GetById(int id)
         {
             return new SuccessDataResult<Food>(_foodDal.Get(x=>x.Id==id), Messages.SuccessListed);
+        }
+
+        public IDataResult<List<CatFoodDetails>> GetCatFoodDetails(int catId)
+        {
+            return new SuccessDataResult<List<CatFoodDetails>>(_foodDal.GetCatFoodDetails(x => x.CatId == catId), Messages.SuccessListed);
         }
 
         public IResult Update(Food food)
