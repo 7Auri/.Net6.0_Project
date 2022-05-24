@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(PDbContext))]
-    [Migration("20220524135900_Project")]
-    partial class Project
+    [Migration("20220524161653_Proje")]
+    partial class Proje
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,6 +139,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CatId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Kind")
                         .HasColumnType("nvarchar(max)");
 
@@ -147,7 +150,9 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DryFood");
+                    b.HasIndex("CatId");
+
+                    b.ToTable("DryFoods");
                 });
 
             modelBuilder.Entity("Entities.Concrete.DTOs.Fvrcp", b =>
@@ -224,7 +229,7 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CatId")
+                    b.Property<int>("CatId")
                         .HasColumnType("int");
 
                     b.Property<int?>("DryFoodId")
@@ -234,8 +239,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CatId");
 
                     b.HasIndex("DryFoodId");
 
@@ -339,6 +342,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CatId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Kind")
                         .HasColumnType("nvarchar(max)");
 
@@ -347,15 +353,24 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WetFood");
+                    b.HasIndex("CatId");
+
+                    b.ToTable("WetFoods");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.DryFood", b =>
+                {
+                    b.HasOne("Entities.Concrete.Cat", "Cat")
+                        .WithMany()
+                        .HasForeignKey("CatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cat");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Food", b =>
                 {
-                    b.HasOne("Entities.Concrete.Cat", "Cat")
-                        .WithMany()
-                        .HasForeignKey("CatId");
-
                     b.HasOne("Entities.Concrete.DryFood", "DryFood")
                         .WithMany()
                         .HasForeignKey("DryFoodId");
@@ -363,8 +378,6 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Concrete.WetFood", "WetFood")
                         .WithMany()
                         .HasForeignKey("WetFoodId");
-
-                    b.Navigation("Cat");
 
                     b.Navigation("DryFood");
 
@@ -420,6 +433,17 @@ namespace DataAccess.Migrations
                     b.Navigation("Leukemia");
 
                     b.Navigation("Rabies");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.WetFood", b =>
+                {
+                    b.HasOne("Entities.Concrete.Cat", "Cat")
+                        .WithMany()
+                        .HasForeignKey("CatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cat");
                 });
 #pragma warning restore 612, 618
         }

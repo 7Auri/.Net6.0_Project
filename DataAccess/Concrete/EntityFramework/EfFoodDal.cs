@@ -20,15 +20,20 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from food in context.Foods
                              join cat in context.Cats
-                             on food.Cat.Id equals cat.Id
+                             on food.CatId equals cat.Id
+                            /*  join dry in context.DryFoods
+                             on food.CatId equals dry.Cat.Id*/
+                              join wet in context.WetFoods
+                             on food.CatId equals wet.Cat.Id
 
                              select new CatFoodDetails
                              {
                                  FoodId = food.Id,
-                                 DryFood = food.DryFood,
-                                 WetFood = food.WetFood,
                                  CatId = cat.Id,
-                                 CatName = cat.Name
+                                 CatName = cat.Name,
+                                /* DryFoodName = dry.Name,*/
+                                 WetFoodName = wet.Name
+
 
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();

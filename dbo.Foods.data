@@ -1,0 +1,4 @@
+﻿SET IDENTITY_INSERT [dbo].[Foods] ON
+INSERT INTO [dbo].[Foods] ([Id], [WetFoodId], [DryFoodId], [CatId]) VALUES (1, NULL, NULL, 1)
+INSERT INTO [dbo].[Foods] ([Id], [WetFoodId], [DryFoodId], [CatId]) VALUES (3, NULL, NULL, 2)
+SET IDENTITY_INSERT [dbo].[Foods] OFF

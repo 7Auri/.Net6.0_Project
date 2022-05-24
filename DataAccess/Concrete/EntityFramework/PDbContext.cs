@@ -22,6 +22,8 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Health> Healths { get; set; }
         public DbSet<MaltVit> MaltVits { get; set; }
         public DbSet<Food> Foods { get; set; }
+        public DbSet<DryFood> DryFoods { get; set; }
+        public DbSet<WetFood> WetFoods { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
 
     }

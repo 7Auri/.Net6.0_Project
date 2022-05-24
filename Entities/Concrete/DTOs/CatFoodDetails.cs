@@ -11,8 +11,9 @@ namespace Entities.Concrete.DTOs
         public int CatId { get; set; }
         public string? CatName { get; set; }
         public int FoodId { get; set; }
-        public WetFood? WetFood { get; set; }
-        public DryFood? DryFood { get; set; }
+        public string? WetFoodName { get; set; }
+        public string? DryFoodName { get; set; }
+       
 
     }
 }

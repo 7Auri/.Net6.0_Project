@@ -73,7 +73,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpGet("food")]
+        [HttpGet("details")]
         public IActionResult CatFoodDetails(int catId)
         {
             var result = _foodService.GetCatFoodDetails(catId);
