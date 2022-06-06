@@ -131,14 +131,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.DryFood", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("DryFoodId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CatId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DryFoodId"), 1L, 1);
 
                     b.Property<string>("Kind")
                         .HasColumnType("nvarchar(max)");
@@ -146,9 +143,7 @@ namespace DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CatId");
+                    b.HasKey("DryFoodId");
 
                     b.ToTable("DryFoods");
                 });
@@ -230,10 +225,10 @@ namespace DataAccess.Migrations
                     b.Property<int>("CatId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DryFoodId")
+                    b.Property<int>("DryFoodId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("WetFoodId")
+                    b.Property<int>("WetFoodId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -334,14 +329,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.WetFood", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("WetFoodId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CatId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WetFoodId"), 1L, 1);
 
                     b.Property<string>("Kind")
                         .HasColumnType("nvarchar(max)");
@@ -349,33 +341,24 @@ namespace DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CatId");
+                    b.HasKey("WetFoodId");
 
                     b.ToTable("WetFoods");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.DryFood", b =>
-                {
-                    b.HasOne("Entities.Concrete.Cat", "Cat")
-                        .WithMany()
-                        .HasForeignKey("CatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cat");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Food", b =>
                 {
                     b.HasOne("Entities.Concrete.DryFood", "DryFood")
                         .WithMany()
-                        .HasForeignKey("DryFoodId");
+                        .HasForeignKey("DryFoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Entities.Concrete.WetFood", "WetFood")
                         .WithMany()
-                        .HasForeignKey("WetFoodId");
+                        .HasForeignKey("WetFoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DryFood");
 
@@ -431,17 +414,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Leukemia");
 
                     b.Navigation("Rabies");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.WetFood", b =>
-                {
-                    b.HasOne("Entities.Concrete.Cat", "Cat")
-                        .WithMany()
-                        .HasForeignKey("CatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cat");
                 });
 #pragma warning restore 612, 618
         }
