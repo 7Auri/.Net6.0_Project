@@ -7,19 +7,19 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VaccineController : ControllerBase
+    public class FvrcpController : ControllerBase
     {
-        IVaccineService _vaccineService;
+        IFvrcpService _fvrcpService;
 
-        public VaccineController(IVaccineService vaccineService)
+        public FvrcpController(IFvrcpService fvrcpService)
         {
-            _vaccineService = vaccineService;
+            _fvrcpService = fvrcpService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _vaccineService.GetAll();
+            var result = _fvrcpService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         [HttpGet("id")]
         public IActionResult GetById(int id)
         {
-            var result = _vaccineService.GetById(id);
+            var result = _fvrcpService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -39,9 +39,9 @@ namespace WebApi.Controllers
 
         }
         [HttpPost]
-        public IActionResult Add(Vaccine vaccine)
+        public IActionResult Add(Fvrcp fvrcp)
         {
-            var result = _vaccineService.Add(vaccine);
+            var result = _fvrcpService.Add(fvrcp);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,9 +50,9 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(Vaccine vaccine)
+        public IActionResult Update(Fvrcp fvrcp)
         {
-            var result = _vaccineService.Update(vaccine);
+            var result = _fvrcpService.Update(fvrcp);
             if (result.Success)
             {
                 return Ok(result);
@@ -62,9 +62,9 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(Vaccine vaccine)
+        public IActionResult Delete(Fvrcp fvrcp)
         {
-            var result = _vaccineService.Delete(vaccine);
+            var result = _fvrcpService.Delete(fvrcp);
             if (result.Success)
             {
                 return Ok(result);

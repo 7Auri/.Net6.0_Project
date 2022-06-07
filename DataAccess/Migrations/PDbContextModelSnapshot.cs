@@ -148,72 +148,6 @@ namespace DataAccess.Migrations
                     b.ToTable("DryFoods");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.DTOs.Fvrcp", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateOfCreation")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Vaccine")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Fvrcp");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.DTOs.Leukemia", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateOfCreation")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Vaccine")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Leukemia");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.DTOs.Rabies", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateOfCreation")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Vaccine")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rabies");
-                });
-
             modelBuilder.Entity("Entities.Concrete.Food", b =>
                 {
                     b.Property<int>("Id")
@@ -240,6 +174,31 @@ namespace DataAccess.Migrations
                     b.ToTable("Foods");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Fvrcp", b =>
+                {
+                    b.Property<int>("FvrcpId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FvrcpId"), 1L, 1);
+
+                    b.Property<int>("CatId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateOfCreation")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Vaccine")
+                        .HasColumnType("bit");
+
+                    b.HasKey("FvrcpId");
+
+                    b.ToTable("Fvrcps");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Health", b =>
                 {
                     b.Property<int>("Id")
@@ -262,6 +221,31 @@ namespace DataAccess.Migrations
                     b.HasIndex("CatId");
 
                     b.ToTable("Healths");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Leukemia", b =>
+                {
+                    b.Property<int>("LeukemiaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LeukemiaId"), 1L, 1);
+
+                    b.Property<int>("CatId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateOfCreation")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Vaccine")
+                        .HasColumnType("bit");
+
+                    b.HasKey("LeukemiaId");
+
+                    b.ToTable("Leukemias");
                 });
 
             modelBuilder.Entity("Entities.Concrete.MaltVit", b =>
@@ -294,37 +278,29 @@ namespace DataAccess.Migrations
                     b.ToTable("MaltVits");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Vaccine", b =>
+            modelBuilder.Entity("Entities.Concrete.Rabies", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RabiesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RabiesId"), 1L, 1);
 
-                    b.Property<int?>("CatId")
+                    b.Property<int>("CatId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FvrcpId")
+                    b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<int>("LeukemiaId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("DateOfCreation")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("RabiesId")
-                        .HasColumnType("int");
+                    b.Property<bool?>("Vaccine")
+                        .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("RabiesId");
 
-                    b.HasIndex("CatId");
-
-                    b.HasIndex("FvrcpId");
-
-                    b.HasIndex("LeukemiaId");
-
-                    b.HasIndex("RabiesId");
-
-                    b.ToTable("Vaccines");
+                    b.ToTable("Rabies");
                 });
 
             modelBuilder.Entity("Entities.Concrete.WetFood", b =>
@@ -381,39 +357,6 @@ namespace DataAccess.Migrations
                         .HasForeignKey("CatId");
 
                     b.Navigation("Cat");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.Vaccine", b =>
-                {
-                    b.HasOne("Entities.Concrete.Cat", "Cat")
-                        .WithMany()
-                        .HasForeignKey("CatId");
-
-                    b.HasOne("Entities.Concrete.DTOs.Fvrcp", "Fvrcp")
-                        .WithMany()
-                        .HasForeignKey("FvrcpId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concrete.DTOs.Leukemia", "Leukemia")
-                        .WithMany()
-                        .HasForeignKey("LeukemiaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concrete.DTOs.Rabies", "Rabies")
-                        .WithMany()
-                        .HasForeignKey("RabiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cat");
-
-                    b.Navigation("Fvrcp");
-
-                    b.Navigation("Leukemia");
-
-                    b.Navigation("Rabies");
                 });
 #pragma warning restore 612, 618
         }

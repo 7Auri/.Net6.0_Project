@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,12 @@ namespace Business.Concrete
         public IDataResult<Cat> GetById(int id)
         {
             return new SuccessDataResult<Cat>(_catDal.Get(x=>x.Id==id), Messages.SuccessListed);
+        }
+
+        public IDataResult<List<CatVaccineDetails>> GetCatVaccineDetails(int catId)
+        {
+            return new SuccessDataResult<List<CatVaccineDetails>>(_catDal.GetCatVaccineDetails(x => x.CatId == catId), Messages.SuccessListed);
+
         }
 
         public IResult Update(Cat cat)

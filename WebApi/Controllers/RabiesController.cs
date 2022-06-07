@@ -7,19 +7,19 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CatController : ControllerBase
+    public class RabiesController : ControllerBase
     {
-        ICatService _catService;
+        IRabiesService _rabiesService;
 
-        public CatController(ICatService catService)
+        public RabiesController(IRabiesService rabiesService)
         {
-            _catService = catService;
+            _rabiesService = rabiesService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _catService.GetAll();
+            var result = _rabiesService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         [HttpGet("id")]
         public IActionResult GetById(int id)
         {
-            var result = _catService.GetById(id);
+            var result = _rabiesService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -39,9 +39,9 @@ namespace WebApi.Controllers
 
         }
         [HttpPost]
-        public IActionResult Add(Cat cat)
+        public IActionResult Add(Rabies rabies)
         {
-            var result = _catService.Add(cat);
+            var result = _rabiesService.Add(rabies);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,9 +50,9 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(Cat cat)
+        public IActionResult Update(Rabies rabies)
         {
-            var result = _catService.Update(cat);
+            var result = _rabiesService.Update(rabies);
             if (result.Success)
             {
                 return Ok(result);
@@ -62,26 +62,14 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(Cat cat)
+        public IActionResult Delete(Rabies rabies)
         {
-            var result = _catService.Delete(cat);
+            var result = _rabiesService.Delete(rabies);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
-        }
-
-        [HttpGet("details")]
-        public IActionResult CatVaccineDetails(int catId)
-        {
-            var result = _catService.GetCatVaccineDetails(catId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-
         }
 
     }

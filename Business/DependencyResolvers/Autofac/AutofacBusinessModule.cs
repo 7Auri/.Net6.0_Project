@@ -39,8 +39,14 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<MaltVitManager>().As<IMaltVitService>().SingleInstance();
             builder.RegisterType<EfMaltVitDal>().As<IMaltVitDal>().SingleInstance();
 
-            builder.RegisterType<VaccineManager>().As<IVaccineService>().SingleInstance();
-            builder.RegisterType<EfVaccineDal>().As<IVaccineDal>().SingleInstance();
+            builder.RegisterType<LeukemiaManager>().As<ILeukemiaService>().SingleInstance();
+            builder.RegisterType<EfLeukemiaDal>().As<ILeukemiaDal>().SingleInstance();
+
+            builder.RegisterType<RabiesManager>().As<IRabiesService>().SingleInstance();
+            builder.RegisterType<EfRabiesDal>().As<IRabiesDal>().SingleInstance();
+
+            builder.RegisterType<FvrcpManager>().As<IFvrcpService>().SingleInstance();
+            builder.RegisterType<EfFvrcpDal>().As<IFvrcpDal>().SingleInstance();
 
             builder.RegisterType<EmailManager>().As<IEmailService>().SingleInstance();
 

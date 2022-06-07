@@ -2,11 +2,13 @@
 
 namespace Entities.Concrete.DTOs
 {
-    public class CommonVaccine : IDto
+    public class CommonVaccine : IEntity
     {
-        public int Id { get; set; }
+       
         public bool? Vaccine { get; set; }
         public DateTime? DateOfCreation { get; set; }
         public int Count { get; set; }
+        public int CatId { get; set; }
+        
     }
 }

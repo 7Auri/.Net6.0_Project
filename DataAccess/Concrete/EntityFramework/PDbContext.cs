@@ -1,11 +1,6 @@
 ﻿using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -24,7 +19,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Food> Foods { get; set; }
         public DbSet<DryFood> DryFoods { get; set; }
         public DbSet<WetFood> WetFoods { get; set; }
-        public DbSet<Vaccine> Vaccines { get; set; }
+        public DbSet<Rabies> Rabies { get; set; }
+        public DbSet<Leukemia> Leukemias { get; set; }
+        public DbSet<Fvrcp> Fvrcps { get; set; }
 
     }
 }
