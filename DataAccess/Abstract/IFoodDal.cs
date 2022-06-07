@@ -13,5 +13,7 @@ namespace DataAccess.Abstract
     public interface IFoodDal : IEntityRepository<Food>
     {
         List<CatFoodDetails> GetCatFoodDetails(Expression<Func<CatFoodDetails, bool>> filter);
+
+      
     }
 }

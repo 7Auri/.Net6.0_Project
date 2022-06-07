@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join dry in context.DryFoods
                              on food.DryFood.DryFoodId equals dry.DryFoodId
                              join wet in context.WetFoods
-                            on food.WetFood.WetFoodId equals wet.WetFoodId
+                             on food.WetFood.WetFoodId equals wet.WetFoodId
 
                              select new CatFoodDetails
                              {
@@ -34,5 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
+
+        
     }
 }

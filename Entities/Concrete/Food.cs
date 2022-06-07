@@ -8,10 +8,12 @@ namespace Entities.Concrete
         public int Id { get; set; }
 
         [ForeignKey("WetFoodId")]
+        public int WetFoodId { get; set; }
         public WetFood WetFood { get; set; }
    
 
         [ForeignKey("DryFoodId")]
+        public int DryFoodId { get; set; }
         public DryFood DryFood { get; set; }
 
         public int CatId { get; set; }

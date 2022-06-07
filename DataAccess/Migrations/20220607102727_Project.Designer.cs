@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(PDbContext))]
-    [Migration("20220606205432_Deneme")]
-    partial class Deneme
+    [Migration("20220607102727_Project")]
+    partial class Project
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
