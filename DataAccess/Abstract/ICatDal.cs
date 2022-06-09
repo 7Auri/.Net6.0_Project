@@ -13,5 +13,6 @@ namespace DataAccess.Abstract
     public interface ICatDal : IEntityRepository<Cat>
     {
         List<CatVaccineDetails> GetCatVaccineDetails(Expression<Func<CatVaccineDetails, bool>> filter);
+        List<CatAllDetails> GetCatAllDetails(Expression<Func<CatAllDetails, bool>> filter);
     }
 }

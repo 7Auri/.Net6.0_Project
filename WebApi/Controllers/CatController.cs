@@ -72,10 +72,21 @@ namespace WebApi.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("details")]
+        [HttpGet("detailsVaccine")]
         public IActionResult CatVaccineDetails(int catId)
         {
             var result = _catService.GetCatVaccineDetails(catId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+        [HttpGet("detailsAll")]
+        public IActionResult CatAllDetails(int catId)
+        {
+            var result = _catService.GetCatAllDetails(catId);
             if (result.Success)
             {
                 return Ok(result);

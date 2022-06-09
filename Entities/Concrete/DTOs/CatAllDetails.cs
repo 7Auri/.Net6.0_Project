@@ -12,6 +12,10 @@ namespace Entities.Concrete.DTOs
         public int CatId { get; set; }
         public string? CatName { get; set; }
         public int Age { get; set; }
+        public string? Disease { get; set; }
         public string? Sterilization { get; set; }
+        public DateTime? MaltTime { get; set; }
+        public DateTime? VitTime { get; set; }
+
     }
 }

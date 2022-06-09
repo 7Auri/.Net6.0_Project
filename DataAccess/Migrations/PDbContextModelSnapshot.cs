@@ -207,7 +207,7 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CatId")
+                    b.Property<int>("CatId")
                         .HasColumnType("int");
 
                     b.Property<string>("Disease")
@@ -217,8 +217,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CatId");
 
                     b.ToTable("Healths");
                 });
@@ -256,7 +254,7 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CatId")
+                    b.Property<int>("CatId")
                         .HasColumnType("int");
 
                     b.Property<bool?>("Malt")
@@ -272,8 +270,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CatId");
 
                     b.ToTable("MaltVits");
                 });
@@ -339,24 +335,6 @@ namespace DataAccess.Migrations
                     b.Navigation("DryFood");
 
                     b.Navigation("WetFood");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.Health", b =>
-                {
-                    b.HasOne("Entities.Concrete.Cat", "Cat")
-                        .WithMany()
-                        .HasForeignKey("CatId");
-
-                    b.Navigation("Cat");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.MaltVit", b =>
-                {
-                    b.HasOne("Entities.Concrete.Cat", "Cat")
-                        .WithMany()
-                        .HasForeignKey("CatId");
-
-                    b.Navigation("Cat");
                 });
 #pragma warning restore 612, 618
         }

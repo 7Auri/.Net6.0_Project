@@ -47,6 +47,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CatVaccineDetails>>(_catDal.GetCatVaccineDetails(x => x.CatId == catId), Messages.SuccessListed);
 
         }
+        public IDataResult<List<CatAllDetails>> GetCatAllDetails(int catId)
+        {
+            return new SuccessDataResult<List<CatAllDetails>>(_catDal.GetCatAllDetails(x => x.CatId == catId), Messages.SuccessListed);
+
+        }
 
         public IResult Update(Cat cat)
         {

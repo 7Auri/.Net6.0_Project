@@ -17,6 +17,6 @@ namespace Business.Abstract
         IResult Update(Cat cat);
         IResult Delete(Cat cat);
         IDataResult<List<CatVaccineDetails>> GetCatVaccineDetails(int catId);
-
+        IDataResult<List<CatAllDetails>> GetCatAllDetails(int catId);
     }
 }

@@ -12,6 +12,6 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public string? Sterilization { get; set; }
         public string? Disease { get; set; }
-        public Cat? Cat { get; set; }
+        public int CatId { get; set; }
     }
 }

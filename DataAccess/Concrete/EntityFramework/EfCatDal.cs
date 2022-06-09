@@ -42,6 +42,44 @@ namespace DataAccess.Concrete.EntityFramework
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
+
+
+
         }
+        public List<CatAllDetails> GetCatAllDetails(Expression<Func<CatAllDetails, bool>> filter)
+        {
+            using (PDbContext context = new())
+            {
+                var result = from cat in context.Cats
+                             join maltVit in context.MaltVits
+                             on cat.Id equals maltVit.CatId
+                            join healt in context.Healths
+                            on cat.Id equals healt.CatId
+                         
+                            
+
+                             select new CatAllDetails
+                             {
+
+                                 CatId = cat.Id,
+                                 CatName = cat.Name,
+                                 Age = cat.Age,
+                                 Sterilization=healt.Sterilization,
+                                 Disease=healt.Disease, 
+                                 MaltTime=maltVit.MaltTime,
+                                 VitTime=maltVit.VitTime,
+                                
+
+
+
+
+                             };
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
+            }
+
+
+
+        }
+
     }
 }
